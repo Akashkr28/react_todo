@@ -7,6 +7,16 @@ function TodoList ( { todos, setTodos } ) {
         setTodos(newTodoList)
     }
 
+    function onEditTodo(id, newTodo){
+        const newTodoList = todos.map(todo => {
+            if(todo.id == id) {
+                todo.text = newTodo;
+            }
+            return todo;
+        })
+        setTodos(newTodoList)
+    }
+
     return(
         todos && todos.map(
             (todo) => <Todo 
@@ -14,9 +24,10 @@ function TodoList ( { todos, setTodos } ) {
                         text={todo.text}
                         id={todo.id} 
                         isFinished={todo.isFinished} 
+                        editTodo={(newTodo) => onEditTodo(todo.id, newTodo)}
                         deleteTodo={() => onDeleteTodo(todo.id)}
                     />)
-    )
+    );
     
 }
 
