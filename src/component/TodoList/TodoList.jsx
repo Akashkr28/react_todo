@@ -17,6 +17,16 @@ function TodoList ( { todos, setTodos } ) {
         setTodos(newTodoList)
     }
 
+    function onFinishTodo(id, state) {
+        const newTodoList = todos.map(todo => {
+            if(todo.id == id) {
+                todo.isFinished = state;
+            }
+            return todo;
+        });
+        setTodos(newTodoList);
+    };
+
     return(
         todos && todos.map(
             (todo) => <Todo 
@@ -26,6 +36,7 @@ function TodoList ( { todos, setTodos } ) {
                         isFinished={todo.isFinished} 
                         editTodo={(newTodo) => onEditTodo(todo.id, newTodo)}
                         deleteTodo={() => onDeleteTodo(todo.id)}
+                        finishTodo={(state) => onFinishTodo(todo.id, state)}
                     />)
     );
     
