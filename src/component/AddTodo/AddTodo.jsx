@@ -1,6 +1,9 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
+import TodoContext from "../../context/TodoContext";
 
-function AddTodo({addTodos}){
+function AddTodo({}){
+
+    const { todos, setTodos } = useContext(TodoContext)
 
     const [todoText, setTodoText] = useState('')
 
@@ -10,9 +13,11 @@ function AddTodo({addTodos}){
                 placeholder="add your next todo...."
                 onChange={(e) => setTodoText(e.target.value)}
                 value={todoText} />
+                
             <button onClick={() => {
-                addTodos(todoText);
-                setTodos(['']);
+                let nextId = todos.length + 1;
+                setTodos([...todos, {id: nextId, text: todoText, isFininsed: false}]);
+                setTodoText('');
             }}>Submit</button>
         </>
     )
