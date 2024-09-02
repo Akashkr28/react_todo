@@ -1,7 +1,7 @@
 function TodoReducer(state, action) {
-    if(UserActivation.type == 'add_todo') {
-        let nextId = state.length+1;
-        setTodos([...todos, {id: nextId, text: todoText, isFininsed: false}]);
+    if(action.type == 'add_todo') {
+        let nextId = state.length + 1;
+        return [...state, {id: nextId, text: action.payload.todoText, isFininsed: false}];
     } 
     else if(action.type == 'edit_todo') {
         const newTodoList = state.map(todo => {
