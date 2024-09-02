@@ -3,7 +3,7 @@ import TodoContext from "../../context/TodoContext";
 
 function AddTodo(){
 
-    const { todos, dispatch } = useContext(TodoContext);
+    const { dispatch } = useContext(TodoContext);
 
     const [todoText, setTodoText] = useState('');
 
